@@ -78,4 +78,13 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+  a {
+    @apply text-muted-foreground underline underline-offset-2;
+  }
+}
+
+@layer components {
+  .icon {
+    @apply h-4 w-4 stroke-[1.3px];
+  }
 }
