@@ -6,21 +6,22 @@ import { toast } from "react-hot-toast";
 import { axios } from "@/lib/axios";
 import { useRouter } from "next/navigation";
 
-interface LoginInput {
+interface RegisterInput {
   email: string;
   password: string;
+  username: string;
 }
 
-async function loginUser(loginInput: LoginInput) {
-  return await axios.post("auth/login/password", {
-    ...loginInput,
+async function registerUser(registerInput: RegisterInput) {
+  return await axios.post("auth/register/", {
+    ...registerInput,
     emailProvider: "email",
   });
 }
 
-function useLoginUser(loginInput: LoginInput) {
+function useRegisterUser(registerInput: RegisterInput) {
   const router = useRouter();
-  return useMutation(() => loginUser(loginInput), {
+  return useMutation(() => registerUser(registerInput), {
     onError(error: AxiosError) {
       if (error.response?.data) {
         const responseData = error.response.data as { message: string };
@@ -29,10 +30,10 @@ function useLoginUser(loginInput: LoginInput) {
       }
     },
     onSuccess() {
-      toast.success("Logged in successfully");
+      toast.success("Registered successfully");
       router.replace("/");
     },
   });
 }
 
-export { useLoginUser };
+export { useRegisterUser };

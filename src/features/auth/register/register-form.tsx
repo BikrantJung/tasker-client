@@ -3,12 +3,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useForm } from "@/hooks/useForm";
+import { useRegisterUser } from "./useRegister";
 export function RegisterForm() {
-  const { formValues, handleChange, handleSubmit } = useForm(() => {}, {
+  const { formValues, handleChange, handleSubmit } = useForm(handleRegister, {
     username: "",
     email: "",
     password: "",
   });
+  const { isLoading, mutate } = useRegisterUser(formValues);
+  function handleRegister() {
+    mutate();
+  }
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex flex-col gap-4">
@@ -45,7 +50,9 @@ export function RegisterForm() {
           />
         </div>
         <div className="flex flex-col">
-          <Button>Sign up</Button>
+          <Button isLoading={isLoading} type="submit">
+            Sign up
+          </Button>
         </div>
       </div>
     </form>
