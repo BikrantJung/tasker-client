@@ -34,20 +34,27 @@ export const Navbar = () => {
           </Link>
         </ul>
         {user ? (
-          <div className="flex items-center">
+          <div className="flex items-center gap-4">
             <NavbarDropdown
               trigger={
-                <Avatar className="h-10 w-10">
+                <Avatar className="h-8 w-8">
                   <AvatarImage src={user?.avatar} alt="@shadcn" />
-                  <AvatarFallback>{fallbackUser}</AvatarFallback>
+                  <AvatarFallback className="text-sm">
+                    {fallbackUser}
+                  </AvatarFallback>
                 </Avatar>
               }
             />
+            <Link href="/dashboard" className="no-underline">
+              <Button variant="outline">Dashboard</Button>
+            </Link>
           </div>
         ) : (
-          <Link href="/login" className="no-underline">
-            <Button>Login</Button>
-          </Link>
+          <div className="flex items-center">
+            <Link href="/login" className="no-underline">
+              <Button>Login</Button>
+            </Link>
+          </div>
         )}
       </div>
     </div>

@@ -2,6 +2,7 @@ import { Providers } from "@/components/providers";
 import { Inter, Schibsted_Grotesk } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
+import { Navbar } from "@/components/navbar/navbar";
 const inter = Inter({ subsets: ["latin"] });
 const schibsted_grotesk = Schibsted_Grotesk({ subsets: ["latin"] });
 
@@ -20,7 +21,10 @@ export default function RootLayout({
       <body className={schibsted_grotesk.className}>
         <Providers>
           <Toaster />
-          {children}
+          <div>
+            <Navbar />
+            {children}
+          </div>
         </Providers>
       </body>
     </html>
