@@ -1,12 +1,10 @@
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/navbar/navbar";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <main className="">
       <Navbar />
-      <Link href="/login">Login</Link>
-      <Link href="/register">Register</Link>
     </main>
   );
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { useInitialLogin } from "./hooks";
+import { SplashScreen } from "@/components/splash-screen";
 interface LoginProviderProps {
   children: React.ReactNode;
 }
@@ -10,5 +11,5 @@ interface LoginProviderProps {
  */
 export const LoginProvider = ({ children }: LoginProviderProps) => {
   const { isLoading } = useInitialLogin();
-  return <div>{isLoading ? <div>Loading</div> : children}</div>;
+  return <div>{isLoading ? <SplashScreen /> : children}</div>;
 };
