@@ -5,6 +5,8 @@ import { AxiosError } from "axios";
 import { toast } from "react-hot-toast";
 import { axios } from "@/lib/axios";
 import { useRouter } from "next/navigation";
+import { useUserStore } from "@/zustand/useUserStore";
+import { UserWithToken } from "@/types";
 
 interface LoginInput {
   email: string;
@@ -12,13 +14,18 @@ interface LoginInput {
 }
 
 async function loginUser(loginInput: LoginInput) {
-  return await axios.post("auth/login/password", {
-    ...loginInput,
-    emailProvider: "email",
-  });
+  return await axios.post(
+    "auth/login/password",
+    {
+      ...loginInput,
+      emailProvider: "email",
+    },
+    { withCredentials: true }
+  );
 }
 
 function useLoginUser(loginInput: LoginInput) {
+  const { setUser } = useUserStore((state) => state);
   const router = useRouter();
   return useMutation(() => loginUser(loginInput), {
     onError(error: AxiosError) {
@@ -28,7 +35,9 @@ function useLoginUser(loginInput: LoginInput) {
         toast.error(responseData.message);
       }
     },
-    onSuccess() {
+    onSuccess({ data }) {
+      const userData: UserWithToken = data;
+      setUser(userData);
       toast.success("Logged in successfully");
       router.replace("/");
     },

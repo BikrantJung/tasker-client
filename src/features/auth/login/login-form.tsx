@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useForm } from "@/hooks/useForm";
-import { useLoginUser } from "./useLogin";
+import { useLoginUser } from "./hooks";
 
 export function LoginForm() {
   const { formValues, handleChange, handleSubmit } = useForm(registerUser, {

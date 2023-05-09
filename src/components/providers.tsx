@@ -2,6 +2,7 @@
 
 import React from "react";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { LoginProvider } from "@/features/auth/login";
 
 function Providers({ children }: React.PropsWithChildren) {
   const [client] = React.useState(
@@ -16,7 +17,11 @@ function Providers({ children }: React.PropsWithChildren) {
     })
   );
 
-  return <QueryClientProvider client={client}>{children}</QueryClientProvider>;
+  return (
+    <QueryClientProvider client={client}>
+      <LoginProvider>{children}</LoginProvider>
+    </QueryClientProvider>
+  );
 }
 
 export { Providers };
