@@ -49,6 +49,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       size,
       children,
       isLoading = false,
+      disabled,
       asChild = false,
       ...props
     },
@@ -61,7 +62,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
-        disabled={isLoading}
+        disabled={isLoading || disabled}
       >
         {isLoading && (
           <div className="absolute">
@@ -98,4 +99,27 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 Button.displayName = "Button";
 
-export { Button, buttonVariants };
+const ActionButton = (props: ButtonProps) => {
+  const {
+    variant = "outline",
+    size = "xs",
+    className,
+    children,
+    ...rest
+  } = props;
+  return (
+    <Button
+      size={size}
+      className={cn(
+        "border border-input bg-white px-1 text-[8px] shadow-sm sm:px-2 sm:text-xs ",
+        buttonVariants({ variant, size, className })
+      )}
+      variant={variant}
+      {...rest}
+    >
+      {children}
+    </Button>
+  );
+};
+
+export { Button, buttonVariants, ActionButton };

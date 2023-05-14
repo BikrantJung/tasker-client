@@ -32,6 +32,9 @@ export const Navbar = () => {
           <Link href="/" className="link no-underline">
             <li>Company</li>
           </Link>
+          <Link href="/dashboard" className="link no-underline">
+            <li >Dashboard</li>
+          </Link>
         </ul>
         {user ? (
           <div className="flex items-center gap-4">

@@ -11,5 +11,6 @@ interface LoginProviderProps {
  */
 export const LoginProvider = ({ children }: LoginProviderProps) => {
   const { isLoading } = useInitialLogin();
-  return <div>{isLoading ? <SplashScreen /> : children}</div>;
+  // return <div>{isLoading ? <SplashScreen /> : children}</div>;
+  return <div>{children}</div>;
 };

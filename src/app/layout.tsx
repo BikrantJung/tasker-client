@@ -18,7 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      
       <body className={schibsted_grotesk.className}>
+       
         <Providers>
           <Toaster />
           <div>
